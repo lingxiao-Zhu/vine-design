@@ -1,0 +1,12 @@
+npm-debug.log
+yarn.lock
+node_modules/
+dist
+/lib
+/es
+*.log
+*.log.*
+.DS_Store
+*.iml
+.idea/
+*.tmp

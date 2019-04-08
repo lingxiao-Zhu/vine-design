@@ -1,0 +1,38 @@
+{
+  "name": "vine",
+  "version": "1.0.0",
+  "description": "A React mobile UI design language ",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "",
+    "build": "rollup -c rollup.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lingxiao-Zhu/vine.git"
+  },
+  "keywords": [
+    "vine",
+    "react",
+    "ui",
+    "design",
+    "framework",
+    "component"
+  ],
+  "author": "Larry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lingxiao-Zhu/vine/issues"
+  },
+  "homepage": "https://github.com/lingxiao-Zhu/vine#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-latest": "^6.24.1",
+    "rollup": "^1.9.0",
+    "rollup-plugin-babel": "3",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.1"
+  }
+}
