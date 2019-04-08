@@ -3,7 +3,7 @@ yarn.lock
 node_modules/
 dist
 /lib
-/es
+/lib
 *.log
 *.log.*
 .DS_Store
