@@ -40,12 +40,15 @@ const createModuleConfig = (prefix, moduleName, modulePath) => ({
     }),
     resolve(),
     babel({
-      exclude: ['node_modules/**', '*.css'] // 只编译我们的源代码
+      exclude: ['node_modules/**', 'src/**/*.css'] // 只编译我们的源代码
     }),
     postcss({
-      sourceMap: false, // true, "inline" or false
-      extract:
-        moduleName === 'index'
+      sourceMap: false, // true, "inline" or false,
+      inject: isDev,
+      // eslint-disable-next-line no-nested-ternary
+      extract: isDev
+        ? false
+        : moduleName === 'index'
           ? `${prefix}/style/index.css`
           : `${prefix}/${moduleName}/style/index.css`,
       plugins: [
@@ -67,15 +70,17 @@ const createModuleConfig = (prefix, moduleName, modulePath) => ({
   ]
 });
 
-// 初始化config，并写入dist的配置
+// 写入dist的配置
 const configs = [createModuleConfig('build/dist', 'index', 'src/index.js')];
 
 // 写入lib配置
 // eslint-disable-next-line array-callback-return
-Object.keys(cModuleMap).map((moduleName) => {
-  configs.push(
-    createModuleConfig('build/lib', moduleName, cModuleMap[moduleName])
-  );
-});
+if (!isDev) {
+  Object.keys(cModuleMap).forEach((moduleName) => {
+    configs.push(
+      createModuleConfig('build/lib', moduleName, cModuleMap[moduleName])
+    );
+  });
+}
 
 export default configs;

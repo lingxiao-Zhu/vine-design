@@ -4,7 +4,7 @@
   "description": "A React mobile UI design language ",
   "main": "build/dist/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development rollup -c rollup.config.js",
+    "start": "cross-env NODE_ENV=development rollup -c rollup.config.js && parcel server/index.html",
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js && node scripts/generate-css-js.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -49,6 +49,7 @@
     "autoprefixer": "^9.5.1",
     "cross-env": "^5.2.0",
     "cssnano": "^4.1.10",
+    "parcel-bundler": "^1.12.3",
     "postcss-simple-vars": "^5.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
