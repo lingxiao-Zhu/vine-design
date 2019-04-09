@@ -1,7 +1,7 @@
 import React from 'react';
-import './style/index.css';
+import './index.css';
 
-class NoticeBar extends React.PureComponent {
+class Carousel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,4 +16,4 @@ class NoticeBar extends React.PureComponent {
   }
 }
 
-export default NoticeBar;
+export default Carousel;

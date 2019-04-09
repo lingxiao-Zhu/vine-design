@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/index.css';
+import './index.css';
 
 class NoticeBar extends React.PureComponent {
   constructor(props) {
@@ -7,6 +7,10 @@ class NoticeBar extends React.PureComponent {
     this.state = {
       name: 1
     };
+  }
+
+  componentDidMount() {
+    console.log(111);
   }
 
   render() {
