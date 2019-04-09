@@ -13,11 +13,10 @@ import cssnano from 'cssnano';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-// 生成config
-const createConfig = (moduleName, modulePath) => ({
+const createModuleConfig = (moduleName, modulePath) => ({
   input: modulePath,
   output: {
-    file: `lib/${moduleName}/index.js`,
+    file: `build/lib/${moduleName}/index.js`,
     format: 'umd',
     name: `vine-design-${moduleName}`, // bundlejs中导出的名称
     globals: {
@@ -27,7 +26,7 @@ const createConfig = (moduleName, modulePath) => ({
   external: ['react'],
   plugins: [
     clear({
-      targets: ['lib']
+      targets: ['build']
     }),
     resolve(),
     babel({
@@ -35,7 +34,7 @@ const createConfig = (moduleName, modulePath) => ({
     }),
     postcss({
       sourceMap: false, // true, "inline" or false
-      extract: `lib/${moduleName}/style/index.css`,
+      extract: `build/lib/${moduleName}/style/index.css`,
       plugins: [
         simplevars(),
         autoprefixer({
@@ -64,11 +63,51 @@ const cModuleMap = cModuleNames.reduce((prev, name) => {
   return prev;
 }, {});
 
-const configs = [];
+// 初始化config，并写入index的配置
+const configs = [
+  {
+    input: 'src/index.js',
+    output: {
+      file: 'build/dist/vine_desgin.js',
+      format: 'umd',
+      name: 'vine-design'
+    },
+    external: ['react'],
+    plugins: [
+      clear({
+        targets: ['build']
+      }),
+      resolve(),
+      babel({
+        exclude: ['node_modules/**', 'src/components/**/*.css'] // 只编译我们的源代码
+      }),
+      postcss({
+        sourceMap: false, // true, "inline" or false
+        extract: 'build/dist/vine_desgin.css',
+        plugins: [
+          simplevars(),
+          autoprefixer({
+            browsers: [
+              '>1%',
+              'last 4 versions',
+              'Firefox ESR',
+              'not ie < 9' // React doesn't support IE8 anyway
+            ],
+            flexbox: 'no-2009'
+          }),
+          !isDev && cssnano()
+        ],
+        extensions: ['.css']
+      }),
+      !isDev && uglify()
+    ]
+  }
+];
 
+// 写入module配置
 // eslint-disable-next-line array-callback-return
 Object.keys(cModuleMap).map((moduleName) => {
-  configs.push(createConfig(moduleName, cModuleMap[moduleName]));
+  configs.push(createModuleConfig(moduleName, cModuleMap[moduleName]));
 });
 
 export default configs;
