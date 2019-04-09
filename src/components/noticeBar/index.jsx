@@ -5,7 +5,7 @@ class NoticeBar extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      name: 1
+      name: 'I am a NoticeBar'
     };
   }
 

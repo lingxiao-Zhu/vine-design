@@ -5,14 +5,14 @@ class Carousel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      name: 1
+      name: 'I am a carousel'
     };
   }
 
   render() {
     const { name } = this.state;
 
-    return <div>{name}</div>;
+    return <div className="vin-d-div">{name}</div>;
   }
 }
 

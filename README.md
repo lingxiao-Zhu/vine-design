@@ -1,2 +1,3 @@
-# vine
-A React mobile UI design language 
+# vine-design
+
+A React mobile UI design language

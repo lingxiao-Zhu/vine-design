@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
 import clear from 'rollup-plugin-clear';
 import babel from 'rollup-plugin-babel';
@@ -11,12 +9,24 @@ import simplevars from 'postcss-simple-vars';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
+// 生成组件 name：path map
+import cModuleMap from './cModuleMap';
+
 const isDev = process.env.NODE_ENV === 'development';
 
-const createModuleConfig = (moduleName, modulePath) => ({
+/**
+ *
+ * @param {string} prefix 输出路径
+ * @param {string} moduleName 模块名称
+ * @param {string} modulePath 模块路径
+ */
+const createModuleConfig = (prefix, moduleName, modulePath) => ({
   input: modulePath,
   output: {
-    file: `build/lib/${moduleName}/index.js`,
+    file:
+      moduleName === 'index'
+        ? `${prefix}/index.js`
+        : `${prefix}/${moduleName}/index.js`,
     format: 'umd',
     name: `vine-design-${moduleName}`, // bundlejs中导出的名称
     globals: {
@@ -30,11 +40,14 @@ const createModuleConfig = (moduleName, modulePath) => ({
     }),
     resolve(),
     babel({
-      exclude: ['node_modules/**', 'src/components/**/*.css'] // 只编译我们的源代码
+      exclude: ['node_modules/**', '*.css'] // 只编译我们的源代码
     }),
     postcss({
       sourceMap: false, // true, "inline" or false
-      extract: `build/lib/${moduleName}/style/index.css`,
+      extract:
+        moduleName === 'index'
+          ? `${prefix}/style/index.css`
+          : `${prefix}/${moduleName}/style/index.css`,
       plugins: [
         simplevars(),
         autoprefixer({
@@ -54,60 +67,15 @@ const createModuleConfig = (moduleName, modulePath) => ({
   ]
 });
 
-// 将组件名称和路径生成入口对象
-const componentDir = 'src/components';
-const cModuleNames = fs.readdirSync(path.resolve(componentDir));
-const cModuleMap = cModuleNames.reduce((prev, name) => {
-  // eslint-disable-next-line no-param-reassign
-  prev[name] = `${componentDir}/${name}/index.jsx`;
-  return prev;
-}, {});
+// 初始化config，并写入dist的配置
+const configs = [createModuleConfig('build/dist', 'index', 'src/index.js')];
 
-// 初始化config，并写入index的配置
-const configs = [
-  {
-    input: 'src/index.js',
-    output: {
-      file: 'build/dist/vine_desgin.js',
-      format: 'umd',
-      name: 'vine-design'
-    },
-    external: ['react'],
-    plugins: [
-      clear({
-        targets: ['build']
-      }),
-      resolve(),
-      babel({
-        exclude: ['node_modules/**', 'src/components/**/*.css'] // 只编译我们的源代码
-      }),
-      postcss({
-        sourceMap: false, // true, "inline" or false
-        extract: 'build/dist/vine_desgin.css',
-        plugins: [
-          simplevars(),
-          autoprefixer({
-            browsers: [
-              '>1%',
-              'last 4 versions',
-              'Firefox ESR',
-              'not ie < 9' // React doesn't support IE8 anyway
-            ],
-            flexbox: 'no-2009'
-          }),
-          !isDev && cssnano()
-        ],
-        extensions: ['.css']
-      }),
-      !isDev && uglify()
-    ]
-  }
-];
-
-// 写入module配置
+// 写入lib配置
 // eslint-disable-next-line array-callback-return
 Object.keys(cModuleMap).map((moduleName) => {
-  configs.push(createModuleConfig(moduleName, cModuleMap[moduleName]));
+  configs.push(
+    createModuleConfig('build/lib', moduleName, cModuleMap[moduleName])
+  );
 });
 
 export default configs;
