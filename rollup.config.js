@@ -5,7 +5,6 @@ import postcss from 'rollup-plugin-postcss';
 import { uglify } from 'rollup-plugin-uglify';
 
 // PostCSS plugins
-import simplevars from 'postcss-simple-vars';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
@@ -40,7 +39,7 @@ const createModuleConfig = (prefix, moduleName, modulePath) => ({
     }),
     resolve(),
     babel({
-      exclude: ['node_modules/**', 'src/**/*.css'] // 只编译我们的源代码
+      exclude: ['node_modules/**', 'src/**/*.css', 'src/**/*.scss'] // 只编译我们的源代码
     }),
     postcss({
       sourceMap: false, // true, "inline" or false,
@@ -52,7 +51,6 @@ const createModuleConfig = (prefix, moduleName, modulePath) => ({
           ? `${prefix}/style/index.css`
           : `${prefix}/${moduleName}/style/index.css`,
       plugins: [
-        simplevars(),
         autoprefixer({
           browsers: [
             '>1%',

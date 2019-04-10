@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel } from '../build/dist';
+import { Carousel } from '../src';
 
 const App = () => <Carousel />;
 

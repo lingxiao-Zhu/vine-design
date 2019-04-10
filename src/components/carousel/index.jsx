@@ -1,11 +1,11 @@
 import React from 'react';
-import './index.css';
+import './index.scss';
 
 class Carousel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'I am a carousel'
+      name: 'I 1am 111a carous11sssssel'
     };
   }
 
