@@ -8,13 +8,12 @@ import { uglify } from 'rollup-plugin-uglify';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
-// 生成组件 name：path map
 import cModuleMap from './cModuleMap';
 
 const isDev = process.env.NODE_ENV === 'development';
 
 /**
- *
+ * 生成rollup配置
  * @param {string} prefix 输出路径
  * @param {string} moduleName 模块名称
  * @param {string} modulePath 模块路径
@@ -62,7 +61,7 @@ const createModuleConfig = (prefix, moduleName, modulePath) => ({
         }),
         !isDev && cssnano()
       ],
-      extensions: ['.css']
+      extensions: ['.css', '.scss']
     }),
     !isDev && uglify()
   ]
