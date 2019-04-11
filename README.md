@@ -6,18 +6,18 @@ A React mobile UI design language
 
 [![Coverage Status](https://coveralls.io/repos/github/lingxiao-Zhu/vine-design/badge.svg?branch=master)](https://coveralls.io/github/lingxiao-Zhu/vine-design?branch=master) ![](https://img.shields.io/github/languages/count/lingxiao-Zhu/vine-design.svg) ![](https://img.shields.io/github/languages/code-size/lingxiao-Zhu/vine-design.svg) ![](https://img.shields.io/github/downloads/lingxiao-Zhu/vine-design/total.svg) ![](https://img.shields.io/github/last-commit/lingxiao-Zhu/vine-design.svg) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 
-# Install(安装)
+## Install(安装)
 
 `npm install vine-design`
 
-# Usage(使用)
+## Usage(使用)
 
 ```javascript
 import { XXX } from "vine-design";
 import "vine-design/build/dist/style/index.css";
 ```
 
-# Use modularized(按需加载)
+## Use modularized(按需加载)
 
 ```javascript
 // .babelrc or babel-loader option
@@ -39,7 +39,7 @@ import "vine-design/build/dist/style/index.css";
 import { XXX } from "antd";
 ```
 
-# Development(开发)
+## Development(开发)
 
 ```bash
 $ git clone https://github.com/lingxiao-Zhu/vine.git
