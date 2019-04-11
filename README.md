@@ -4,7 +4,7 @@ A React mobile UI design language
 
 基于 React 的 mobile 端 UI 框架
 
-![](https://img.shields.io/github/languages/count/lingxiao-Zhu/vine-design.svg) ![](https://img.shields.io/github/languages/code-size/lingxiao-Zhu/vine-design.svg) ![](https://img.shields.io/github/downloads/lingxiao-Zhu/vine-design/total.svg) ![](https://img.shields.io/github/last-commit/lingxiao-Zhu/vine-design.svg)
+[![Coverage Status](https://coveralls.io/repos/github/lingxiao-Zhu/vine-design/badge.svg?branch=master)](https://coveralls.io/github/lingxiao-Zhu/vine-design?branch=master) ![](https://img.shields.io/github/languages/count/lingxiao-Zhu/vine-design.svg) ![](https://img.shields.io/github/languages/code-size/lingxiao-Zhu/vine-design.svg) ![](https://img.shields.io/github/downloads/lingxiao-Zhu/vine-design/total.svg) ![](https://img.shields.io/github/last-commit/lingxiao-Zhu/vine-design.svg) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 
 # Install(安装)
 

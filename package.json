@@ -7,7 +7,7 @@
     "start": "parcel server/index.html --open",
     "dev": "cross-env NODE_ENV=development rollup -c rollup.config.js",
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js && node scripts/generate-css-js.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-all": "node scripts/test-all.sh"
   },
   "repository": {
     "type": "git",
@@ -31,11 +31,11 @@
     "babel-core": "^6.26.3",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-latest": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^5.16.0",
+    "jest": "^23.0.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
@@ -54,8 +54,10 @@
   "dependencies": {
     "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.0.1",
+    "chalk": "^2.4.2",
     "cross-env": "^5.2.0",
     "cssnano": "^4.1.10",
+    "dekko": "^0.2.1",
     "parcel-bundler": "^1.12.3",
     "postcss-simple-vars": "^5.0.2",
     "prop-types": "^15.7.2",
