@@ -10,3 +10,5 @@ dist
 *.iml
 .idea/
 *.tmp
+build/
+.cache

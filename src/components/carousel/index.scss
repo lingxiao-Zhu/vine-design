@@ -1,0 +1,44 @@
+@import "../style/index.scss";
+
+.#{$prefix}-carousel {
+  position: relative;
+  overflow: hidden;
+
+  .slider-list {
+    position: relative;
+    overflow: hidden;
+
+    .slider {
+      display: block;
+      float: left;
+      height: 200px;
+      width: 100vw;
+      background-color: #f7f7f7;
+      background-size: 100% 100%;
+
+      .title {
+        color: #eee;
+        background-color: rgba(0, 0, 0, 0.3);
+        font-size: 16px;
+        position: absolute;
+        bottom: 0;
+        padding: 8px;
+        width: inherit;
+      }
+    }
+  }
+
+  .dots {
+    position: absolute;
+    bottom: 10px;
+    width: 100vw;
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 7px;
+      margin: 0 5px;
+      display: inline-block;
+    }
+  }
+}
