@@ -20,6 +20,7 @@
   "rules": {
     "import/no-extraneous-dependencies": false,
     "comma-dangle": 0,
-    "import/extensions": false
+    "import/extensions": false,
+    "import/prefer-default-export": false
   }
 }
