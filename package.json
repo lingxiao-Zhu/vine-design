@@ -8,7 +8,8 @@
     "dev": "cross-env NODE_ENV=development rollup -c rollup.config.js",
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js && node scripts/generate-css-js.js",
     "test-all": "sh scripts/test-all.sh",
-    "test": "sh scripts/test-all.sh"
+    "test": "sh scripts/test-all.sh",
+    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
