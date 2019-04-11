@@ -8,10 +8,11 @@ A React mobile UI design language
 
 ![](https://img.shields.io/github/last-commit/lingxiao-Zhu/vine-design.svg) ![](https://img.shields.io/librariesio/github/lingxiao-Zhu/vine-design.svg)
 
-#Install(安装)
+# Install(安装)
+
 `npm install vine-design`
 
-#Usage(使用)
+# Usage(使用)
 
 ```javascript
 import { Carousel } from "vine-design";
@@ -25,7 +26,7 @@ And import style manually(手动引入样式文件):
 import "vine-design/build/dist/style/index.css";
 ```
 
-#Development(开发)
+# Development(开发)
 
 ```bash
 $ git clone https://github.com/lingxiao-Zhu/vine.git
