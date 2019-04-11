@@ -2,6 +2,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import clear from 'rollup-plugin-clear';
 import babel from 'rollup-plugin-babel';
 import postcss from 'rollup-plugin-postcss';
+import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
 
 // PostCSS plugins
@@ -37,6 +38,9 @@ const createModuleConfig = (prefix, moduleName, modulePath) => ({
       targets: ['build']
     }),
     resolve(),
+    commonjs({
+      include: 'node_modules/**' // Default: undefined
+    }),
     babel({
       exclude: ['node_modules/**', 'src/**/*.css', 'src/**/*.scss'] // 只编译我们的源代码
     }),

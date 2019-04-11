@@ -5,8 +5,8 @@
 /* eslint-disable indent */
 import React from 'react';
 import PropTypes from 'prop-types';
-import SingleSlider from './slider';
-import Dot from './dot';
+import SingleSlider from './slider.jsx';
+import Dots from './dots.jsx';
 import './index.scss';
 
 const AnimationTime = 0.5; // 动画时间
@@ -15,26 +15,14 @@ const ScreenWidth = document.documentElement.clientWidth;
 
 const Swiper = 40; // 滑动滚动触发距离
 
-const styles = {
-  container: {
-    position: 'relative',
-    overflow: 'hidden'
-  },
-  dotsWrap: {
-    position: 'absolute',
-    bottom: 10,
-    width: '100%',
-    textAlign: 'center'
-  }
-};
-
 let SlideInter;
 
 export default class Carousel extends React.PureComponent {
   static defaultProps = {
     continuous: true,
     autoSlide: true,
-    slideSpeed: 2000
+    slideSpeed: 2000,
+    dotPosition: 'right'
   };
 
   constructor(props) {
@@ -82,7 +70,7 @@ export default class Carousel extends React.PureComponent {
 
   touchMove = (e) => {
     // 阻止 页面上下滚动
-    // e.preventDefault();
+    e.preventDefault();
 
     // 移动的时候，暂停自动轮播
     this.stopSlideFun();
@@ -195,18 +183,16 @@ export default class Carousel extends React.PureComponent {
   };
 
   render() {
-    const { opts, continuous } = this.props;
+    const { opts, continuous, dotPosition } = this.props;
 
     const {
  distance, time, index, fakeOpts 
 } = this.state;
 
-    const slideStyle = {
-      position: 'relative',
-      overflow: 'hidden',
+    const slideListStyle = {
       width: `${ScreenWidth * (fakeOpts.length + 2)}px`,
-      WebkitTransform: `translateX(${distance}px)`,
-      transform: `translateX(${distance}px)`,
+      WebkitTransform: `translate3d(${distance}px, 0, 0)`,
+      transform: `translate3d(${distance}px, 0, 0)`,
       WebkitTransition: `all ${time}s`,
       transition: `all ${time}s`
     };
@@ -220,14 +206,11 @@ export default class Carousel extends React.PureComponent {
       />
     ));
 
-    const dots = opts.map((item, i) => (
-      <Dot key={i} active={continuous ? index === i + 1 : index === i} />
-    ));
-
     return (
-      <div style={styles.container}>
+      <div className="vined-carousel">
         <div
-          style={slideStyle}
+          className="slider-list"
+          style={slideListStyle}
           onTouchStart={this.touchStart}
           onTouchMove={this.touchMove}
           onTouchEnd={this.touchEnd}
@@ -235,7 +218,12 @@ export default class Carousel extends React.PureComponent {
           {sliders}
         </div>
 
-        <div style={styles.dotsWrap}>{dots}</div>
+        <Dots
+          opts={opts}
+          continuous={continuous}
+          dotPosition={dotPosition}
+          index={index}
+        />
       </div>
     );
   }
@@ -245,5 +233,6 @@ Carousel.propTypes = {
   opts: PropTypes.array.isRequired,
   continuous: PropTypes.bool,
   slideSpeed: PropTypes.number,
-  autoSlide: PropTypes.bool
+  autoSlide: PropTypes.bool,
+  dotPosition: PropTypes.string
 };
