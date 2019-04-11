@@ -5,3 +5,7 @@ node_js:
 
 before_script:
   - npm run build
+
+branches:
+  only:
+    - master
