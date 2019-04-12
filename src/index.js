@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable no-console */
 // this file is not used if use babel-plugin-import
 const ENV = process.env.NODE_ENV;
