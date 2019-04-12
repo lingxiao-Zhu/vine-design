@@ -42,6 +42,7 @@ const createModuleConfig = (prefix, moduleName, modulePath) => ({
       include: 'node_modules/**' // Default: undefined
     }),
     babel({
+      plugins: ['external-helpers'],
       exclude: ['node_modules/**', 'src/**/*.css', 'src/**/*.scss'] // 只编译我们的源代码
     }),
     postcss({

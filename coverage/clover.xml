@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1555040643687" clover="3.2.0">
-  <project timestamp="1555040643687" name="All files">
+<coverage generated="1555047999859" clover="3.2.0">
+  <project timestamp="1555047999859" name="All files">
     <metrics statements="74" coveredstatements="35" conditionals="38" coveredconditionals="9" methods="18" coveredmethods="10" elements="130" coveredelements="54" complexity="0" loc="74" ncloc="74" packages="1" files="3" classes="3">
       <file name="dots.jsx" path="/Users/zhulingxiao/code/vine-design/src/components/carousel/dots.jsx">
         <metrics statements="6" coveredstatements="6" conditionals="8" coveredconditionals="4" methods="2" coveredmethods="2"/>
