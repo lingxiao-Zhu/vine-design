@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "extends": "airbnb",
   "globals": {
@@ -21,6 +22,7 @@
     "import/no-extraneous-dependencies": false,
     "comma-dangle": 0,
     "import/extensions": false,
-    "import/prefer-default-export": false
+    "import/prefer-default-export": false,
+    "import/no-unresolved": false
   }
 }
