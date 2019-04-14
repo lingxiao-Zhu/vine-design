@@ -12,4 +12,4 @@ dist
 *.tmp
 build/
 .cache/
-.cache
+coverage/
