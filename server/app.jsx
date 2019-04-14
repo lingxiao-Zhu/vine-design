@@ -1,6 +1,5 @@
 import React from 'react';
-import { Carousel } from '../build/dist';
-import '../build/dist/style/index.css';
+import { Carousel, Tabs } from '../src';
 
 const opts = [
   {
@@ -18,6 +17,11 @@ const opts = [
   }
 ];
 
-const App = () => <Carousel opts={opts} />;
+const App = () => (
+  <div>
+    <Carousel opts={opts} />
+    <Tabs />
+  </div>
+);
 
 export default App;
