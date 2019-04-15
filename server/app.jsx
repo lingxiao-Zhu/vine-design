@@ -17,10 +17,83 @@ const opts = [
   }
 ];
 
+const tabs = [
+  { title: 'First Tab' },
+  { title: 'Second Tab' },
+  { title: 'Third Tab' },
+  { title: 'Fourth Tab' }
+];
+
 const App = () => (
   <div>
     <Carousel opts={opts} />
-    <Tabs />
+    <Tabs tabs={tabs}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '150px'
+        }}
+      >
+        Content of first tab
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '250px'
+        }}
+      >
+        Content of second tab
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '350px'
+        }}
+      >
+        Content of third tab
+      </div>
+    </Tabs>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
   </div>
 );
 

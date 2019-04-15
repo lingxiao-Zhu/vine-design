@@ -64,6 +64,7 @@
     "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.0.1",
     "chalk": "^2.4.2",
+    "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
     "cssnano": "^4.1.10",
     "dekko": "^0.2.1",
