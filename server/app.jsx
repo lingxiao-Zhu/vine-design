@@ -1,6 +1,5 @@
 import React from 'react';
-import { Carousel } from '../build/dist';
-import '../build/dist/style/index.css';
+import { Carousel, Tabs } from '../src';
 
 const opts = [
   {
@@ -18,6 +17,94 @@ const opts = [
   }
 ];
 
-const App = () => <Carousel opts={opts} />;
+const tabs = [
+  { title: 'First Tab' },
+  { title: 'Second Tab' },
+  { title: 'Third Tab' },
+  { title: 'Fourth Tab' }
+];
+
+const App = () => (
+  <div>
+    <Carousel opts={opts} />
+    <Tabs tabs={tabs}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '150px'
+        }}
+      >
+        Content of first tab
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '250px'
+        }}
+      >
+        Content of second tab
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '350px'
+        }}
+      >
+        Content of third tab
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '350px'
+        }}
+      >
+        Content of forth tab
+      </div>
+    </Tabs>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+  </div>
+);
 
 export default App;

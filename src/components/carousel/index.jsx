@@ -21,7 +21,7 @@ export default class Carousel extends React.PureComponent {
   static defaultProps = {
     continuous: true,
     autoSlide: true,
-    slideSpeed: 2000,
+    slideSpeed: 3000,
     dotPosition: 'right'
   };
 

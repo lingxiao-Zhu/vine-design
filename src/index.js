@@ -17,3 +17,4 @@ if (
 
 /* eslint-disable import/extensions */
 export { default as Carousel } from './components/carousel/index.jsx';
+export { default as Tabs } from './components/tabs/index.jsx';
