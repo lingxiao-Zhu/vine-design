@@ -58,6 +58,16 @@ const App = () => (
       >
         Content of third tab
       </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '350px'
+        }}
+      >
+        Content of forth tab
+      </div>
     </Tabs>
     <p>1</p>
     <p>1</p>

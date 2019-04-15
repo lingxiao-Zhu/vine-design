@@ -1,7 +1,8 @@
+/* eslint-disable react/no-unused-state */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import ClassNames from 'classnames';
+import Tabbar from './tabbar';
 import './index.scss';
 
 const tabBarHeight = 45;
@@ -17,12 +18,13 @@ function calcWitdh(length) {
 class Tabs extends React.PureComponent {
   static defaultProps = {
     page: 0, // 当前tab
-    sticky: true // 是否吸顶
+    sticky: true, // 是否吸顶
+    onTabClick: () => {}
   };
 
   constructor(props) {
     super(props);
-    this.tabs = null;
+    this.tabsDom = null;
     this.state = {
       page: Number(props.page),
       width: calcWitdh(props.tabs.length),
@@ -37,7 +39,7 @@ class Tabs extends React.PureComponent {
     if (sticky) {
       // 获取整个tabs组件
       const [tabs] = document.getElementsByClassName('vined-tabs');
-      this.tabs = tabs;
+      this.tabsDom = tabs;
 
       // 添加scroll事件
       window.addEventListener('scroll', this.onScroll);
@@ -52,7 +54,7 @@ class Tabs extends React.PureComponent {
   onScroll = () => {
     const { fixed } = this.state;
 
-    const { top, height } = this.tabs.getBoundingClientRect();
+    const { top, height } = this.tabsDom.getBoundingClientRect();
 
     if (top < 0 && !fixed) {
       this.setState({
@@ -86,63 +88,28 @@ class Tabs extends React.PureComponent {
   };
 
   changeTab = (e) => {
+    const { onTabClick } = this.props;
     const page = Number(e.target.getAttribute('data-page'));
+    onTabClick(page);
     this.setState({
       page
     });
   };
 
+  createTranslate = x => ({
+    WebkitTransform: `translate3d(${x}%, 0, 0)`,
+    transform: `translate3d(${x}%, 0, 0)`
+  });
+
   render() {
     const { tabs, children } = this.props;
-    const {
-      page,
-      width,
-      fixed,
-      top
-      // eslint-disable-next-line indent
-    } = this.state;
-    const widthWithUnit = `${width}%`;
-
-    const contentStyle = {
-      WebkitTransform: `translate3d(${-100 * page}%, 0, 0)`,
-      transform: `translate3d(${-100 * page}%, 0, 0)`
-    };
-
-    const tabBarWrapStyle = {
-      top
-    };
+    const { page, fixed } = this.state;
 
     return (
       <div className="vined-tabs">
-        <div
-          className={ClassNames('tab-bar-wrap', {
-            'tab-bar-wrap-fixed': fixed
-          })}
-          style={tabBarWrapStyle}
-        >
-          {tabs.map((item, i) => (
-            <button
-              key={item.title}
-              onClick={this.changeTab}
-              data-page={i}
-              type="button"
-              style={{ width: widthWithUnit }}
-              className={ClassNames('tab-bar', {
-                'tab-bar-active': page === i
-              })}
-            >
-              {item.title}
-            </button>
-          ))}
-          <div
-            style={{ width: widthWithUnit, left: `${width * page}%` }}
-            className="underline"
-          />
-        </div>
-
+        <Tabbar state={this.state} tabs={tabs} changeTab={this.changeTab} />
         <div style={{ paddingBottom: fixed ? tabBarHeight : 0 }} />
-
-        <div className="content-wrap" style={contentStyle}>
+        <div className="content-wrap" style={this.createTranslate(-100 * page)}>
           {React.Children.map(children, child => (
             <div className="pane-wrap">{child}</div>
           ))}
@@ -156,7 +123,8 @@ Tabs.propTypes = {
   tabs: PropTypes.array.isRequired,
   page: PropTypes.number,
   children: PropTypes.array.isRequired,
-  sticky: PropTypes.bool
+  sticky: PropTypes.bool,
+  onTabClick: PropTypes.func
 };
 
 export default Tabs;

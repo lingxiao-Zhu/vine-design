@@ -1,5 +1,7 @@
 @import "../style/index.scss";
 
+$transition: all ease-in-out 0.3s;
+
 .#{$prefix}-tabs {
   width: 100%;
   background-color: #eee;
@@ -7,7 +9,6 @@
 
   .tab-bar-wrap {
     position: relative;
-    display: flex;
     width: 100%;
     border-bottom: 1px solid #eee;
     background-color: #fff;
@@ -19,32 +20,37 @@
       z-index: 1;
     }
 
-    .tab-bar {
-      display: block;
-      height: 44px;
-      min-width: 33.33%;
-      text-align: center;
-      font-size: 15px;
-    }
+    .tab-bar-flex-box {
+      display: flex;
+      transition: $transition;
 
-    .tab-bar-active {
-      color: $theme-color;
-    }
+      .tab-bar {
+        display: block;
+        height: 44px;
+        min-width: 33.33%;
+        text-align: center;
+        font-size: 15px;
+      }
 
-    .underline {
-      position: absolute;
-      bottom: 0;
-      min-width: 33.33%;
-      background-color: $theme-color;
-      height: 1px;
-      transition: left ease-in-out 0.3s;
+      .tab-bar-active {
+        color: $theme-color;
+      }
+
+      .underline {
+        position: absolute;
+        bottom: 0;
+        min-width: 33.33%;
+        background-color: $theme-color;
+        height: 1px;
+        transition: $transition;
+      }
     }
   }
 
   .content-wrap {
     display: flex;
     width: 100%;
-    transition: all ease-in-out 0.3s;
+    transition: $transition;
 
     .pane-wrap {
       width: 100%;
