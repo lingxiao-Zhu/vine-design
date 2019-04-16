@@ -25,9 +25,7 @@ const tabs = [
 ];
 
 function ToastInfo() {
-  Toast.info('2111', 2000, () => {
-    console.log('ddd');
-  });
+  Toast.info('2111', 2000, '222');
 }
 
 const App = () => (

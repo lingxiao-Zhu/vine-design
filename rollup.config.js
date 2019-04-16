@@ -4,6 +4,7 @@ import babel from 'rollup-plugin-babel';
 import postcss from 'rollup-plugin-postcss';
 import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
+import image from 'rollup-plugin-img';
 
 // PostCSS plugins
 import autoprefixer from 'autoprefixer';
@@ -38,6 +39,10 @@ const createModuleConfig = (prefix, moduleName, modulePath) => ({
       targets: ['build']
     }),
     resolve(),
+    image({
+      limit: 8192, // default 8192(8k)
+      exclude: 'node_modules/**'
+    }),
     commonjs({
       include: 'node_modules/**' // Default: undefined
     }),

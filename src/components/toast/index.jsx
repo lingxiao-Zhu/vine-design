@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import Notification from './notification.jsx';
 import './index.scss';
@@ -42,7 +43,9 @@ function notice(content, type, duration = 2000, onClose) {
     timeout = setTimeout(() => {
       if (messageInstance) {
         // eslint-disable-next-line no-unused-expressions
-        typeof onClose === 'function' && onClose();
+        typeof onClose === 'function'
+          ? onClose()
+          : console.error('Toast: callback is not a function');
         messageInstance.destroy();
         messageInstance = null;
       }
