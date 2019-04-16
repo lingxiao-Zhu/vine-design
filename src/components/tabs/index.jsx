@@ -2,7 +2,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tabbar from './tabbar';
+import Tabbar from './tabbar.jsx';
 import './index.scss';
 
 const tabBarHeight = 45;

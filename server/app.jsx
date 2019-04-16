@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Tabs } from '../src';
+import { Carousel, Tabs, Toast } from '../src';
 
 const opts = [
   {
@@ -23,6 +23,12 @@ const tabs = [
   { title: 'Third Tab' },
   { title: 'Fourth Tab' }
 ];
+
+function ToastInfo() {
+  Toast.info('2111', 2000, () => {
+    console.log('ddd');
+  });
+}
 
 const App = () => (
   <div>
@@ -75,33 +81,10 @@ const App = () => (
     <p>1</p>
     <p>1</p>
 
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
+    <button type="button" onClick={ToastInfo}>
+      show Toast
+    </button>
 
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
     <p>1</p>
     <p>1</p>
   </div>

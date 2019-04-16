@@ -27,6 +27,7 @@ export default class Carousel extends React.PureComponent {
 
   constructor(props) {
     super(props);
+    this.slideListDom = null;
     this.state = {
       fakeOpts: [...props.opts],
       startX: '', // touchstart的 x
@@ -54,10 +55,19 @@ export default class Carousel extends React.PureComponent {
   }
 
   componentDidMount() {
+    // 通过原生js绑定touchmove，才能传递passive属性
+    document
+      .getElementsByClassName('slider-list')[0]
+      .addEventListener('touchmove', this.touchMove, {
+        passive: false
+      });
     this.autoSlideFun();
   }
 
   componentWillUnmount() {
+    document
+      .getElementsByClassName('slider-list')[0]
+      .removeEventListener('touchmove', this.touchMove);
     this.stopSlideFun();
   }
 
@@ -215,7 +225,6 @@ export default class Carousel extends React.PureComponent {
           className="slider-list"
           style={slideListStyle}
           onTouchStart={this.touchStart}
-          onTouchMove={this.touchMove}
           onTouchEnd={this.touchEnd}
         >
           {sliders}
