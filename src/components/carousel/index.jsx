@@ -166,6 +166,9 @@ export default class Carousel extends React.PureComponent {
     }
   };
 
+  /**
+   * 启动自动轮播，设置interval
+   */
   autoSlideFun = () => {
     const { autoSlide, slideSpeed } = this.props;
 
