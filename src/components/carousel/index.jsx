@@ -2,7 +2,6 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-trailing-spaces */
-/* eslint-disable indent */
 import React from 'react';
 import PropTypes from 'prop-types';
 import SingleSlider from './slider.jsx';
@@ -199,8 +198,12 @@ export default class Carousel extends React.PureComponent {
     const { opts, continuous, dotPosition } = this.props;
 
     const {
- distance, time, index, fakeOpts 
-} = this.state;
+      distance,
+      time,
+      index,
+      fakeOpts
+      // eslint-disable-next-line indent
+    } = this.state;
 
     const slideListStyle = {
       width: `${ScreenWidth * (fakeOpts.length + 2)}px`,

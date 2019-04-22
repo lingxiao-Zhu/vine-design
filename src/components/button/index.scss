@@ -1,0 +1,52 @@
+@import "../style/index.scss";
+
+.#{$prefix}-button {
+  height: 50px;
+  text-align: center;
+  width: 92vw;
+  margin: 0 auto;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+
+  &-default {
+    background-color: #fff;
+    border: 1px solid #eee;
+    color: black;
+    &:active {
+      background-color: #ddd;
+    }
+
+    &.button-disabled {
+      color: #999;
+    }
+  }
+
+  &-primary {
+    background-color: $theme-color;
+    &:active {
+      background-color: #337ec5;
+      color: #6aa4ab;
+    }
+    &.button-disabled {
+      background-color: #92c5fa;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  &-warn {
+    background-color: $warn-color;
+    &:active {
+      background-color: #c2524c;
+      color: #d38481;
+    }
+    &.button-disabled {
+      background-color: #ed9a9a;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}

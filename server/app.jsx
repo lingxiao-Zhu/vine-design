@@ -1,5 +1,11 @@
 import React from 'react';
-import { Carousel, Tabs, Toast } from '../src';
+import {
+  Carousel,
+  Tabs,
+  Toast,
+  Button
+  // eslint-disable-next-line indent
+} from '../src';
 
 const opts = [
   {
@@ -73,11 +79,17 @@ const App = () => (
         Content of forth tab
       </div>
     </Tabs>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
+    <p>
+      <Button>普通按钮</Button>
+    </p>
+    <p>
+      <Button type="primary">11</Button>
+    </p>
+    <p>
+      <Button type="warn" disabled>
+        11
+      </Button>
+    </p>
 
     <button type="button" onClick={ToastInfo}>
       show Toast
