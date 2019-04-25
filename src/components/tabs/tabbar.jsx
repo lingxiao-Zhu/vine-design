@@ -59,7 +59,7 @@ export default class Tabbar extends React.PureComponent {
           <div
             style={{
               left: `${width * page}%`,
-              marginLeft: `${tabs.length >= 3 ? 12.8 : 21}vw`
+              marginLeft: `${tabs.length >= 3 ? 12.5 : 21}vw`
             }}
             className="underline"
           />

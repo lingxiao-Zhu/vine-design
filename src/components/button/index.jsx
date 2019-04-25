@@ -34,7 +34,7 @@ export default class Button extends React.PureComponent {
     return (
       <button
         type="button"
-        onClick={!loading && onClick}
+        onClick={!loading ? onClick : () => {}}
         className={classNames}
       >
         {loading && (

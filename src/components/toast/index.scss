@@ -17,6 +17,8 @@
     background-color: rgba(0, 0, 0, 0.6);
     color: #f2f2f2;
     font-size: 14px;
+    opacity: 0;
+    animation: fadeIn 0.3s linear forwards;
 
     &-content {
       display: flex;

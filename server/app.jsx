@@ -82,7 +82,7 @@ const App = () => (
       <Button
         type="primary"
         iconType="offline"
-        onClick={() => Toast.fail('网络错误', 2000)}
+        onClick={() => Toast.info('网络错误', 2000)}
       >
         11
       </Button>
