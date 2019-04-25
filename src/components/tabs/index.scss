@@ -38,10 +38,11 @@ $transition: all ease-in-out 0.3s;
 
       .underline {
         position: absolute;
+        width: 8vw;
         bottom: 0;
-        min-width: 33.33%;
         background-color: $theme-color;
-        height: 1px;
+        height: 2px;
+        border-radius: 5px;
         transition: $transition;
       }
     }
