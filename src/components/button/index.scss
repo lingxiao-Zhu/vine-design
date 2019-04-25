@@ -3,7 +3,7 @@
 .#{$prefix}-button {
   height: 50px;
   text-align: center;
-  width: 92vw;
+  width: 90%;
   margin: 0 auto;
   border-radius: 30px;
   display: flex;
@@ -12,6 +12,10 @@
   color: white;
   font-size: 18px;
   letter-spacing: 1px;
+
+  .button-loading-icon {
+    animation: rotate 1s infinite linear;
+  }
 
   &-default {
     background-color: #fff;

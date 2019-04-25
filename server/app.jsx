@@ -30,10 +30,6 @@ const tabs = [
   { title: 'Fourth Tab' }
 ];
 
-function ToastInfo() {
-  Toast.info('2111', 2000, '222');
-}
-
 const App = () => (
   <div>
     <Carousel opts={opts} />
@@ -80,23 +76,31 @@ const App = () => (
       </div>
     </Tabs>
     <p>
-      <Button>普通按钮</Button>
+      <Button loading>普通按钮</Button>
     </p>
     <p>
-      <Button type="primary">11</Button>
-    </p>
-    <p>
-      <Button type="warn" disabled>
+      <Button
+        type="primary"
+        iconType="offline"
+        onClick={() => Toast.fail('网络错误', 2000)}
+      >
         11
       </Button>
     </p>
-
-    <button type="button" onClick={ToastInfo}>
-      show Toast
-    </button>
-
-    <p>1</p>
-    <p>1</p>
+    <p>
+      <Button
+        type="primary"
+        loading
+        onClick={() => Toast.offline('网络错误', 2000)}
+      >
+        加载动画
+      </Button>
+    </p>
+    <p>
+      <Button type="warn" disabled iconType="fail">
+        11
+      </Button>
+    </p>
   </div>
 );
 

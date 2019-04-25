@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import Notification from './notification.jsx';
+import Icon from '../icon/index.jsx';
 import './index.scss';
 
 let messageInstance;
@@ -31,7 +32,14 @@ function notice(content, type, duration = 2000, onClose) {
     messageInstance = null;
   }
 
-  const contentDom = <div>{content}</div>;
+  const contentDom = (
+    <div className="toast-box-content">
+      {iconType && iconType !== 'info' && (
+        <Icon className="toast-icon" type={iconType} width={40} height={40} />
+      )}
+      <div className="toast-text">{content}</div>
+    </div>
+  );
 
   Notification.newInstance(contentDom, (instance) => {
     // 将产生的toast实例返回给当前模块

@@ -13,9 +13,7 @@ class Notification extends React.Component {
 
     return (
       <div className="vined-toast-mask">
-        <div className="toast-box">
-          <div>{content}</div>
-        </div>
+        <div className="toast-box">{content}</div>
       </div>
     );
   }
