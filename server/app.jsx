@@ -3,7 +3,8 @@ import {
   Carousel,
   Tabs,
   Toast,
-  Button
+  Button,
+  Modal
   // eslint-disable-next-line indent
 } from '../src';
 
@@ -30,78 +31,104 @@ const tabs = [
   { title: 'Fourth Tab' }
 ];
 
-const App = () => (
-  <div>
-    <Carousel opts={opts} />
-    <Tabs tabs={tabs}>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '150px'
-        }}
-      >
-        Content of first tab
+class App extends React.PureComponent {
+  state = {
+    modalVisible: false
+  };
+
+  openModal = () => {
+    this.setState({
+      modalVisible: true
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      modalVisible: false
+    });
+  };
+
+  render() {
+    const { modalVisible } = this.state;
+
+    return (
+      <div>
+        <Carousel opts={opts} />
+        <Tabs tabs={tabs}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '150px'
+            }}
+          >
+            Content of first tab
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '250px'
+            }}
+          >
+            Content of second tab
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '350px'
+            }}
+          >
+            Content of third tab
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '350px'
+            }}
+          >
+            Content of forth tab
+          </div>
+        </Tabs>
+        <p>
+          <Button onClick={this.openModal}>普通按钮(弹出modal)</Button>
+        </p>
+        <p>
+          <Button onClick={() => Modal.confirm()}>普通按钮(confirm)</Button>
+        </p>
+        <p>
+          <Button
+            type="primary"
+            iconType="offline"
+            onClick={() => Toast.info('网络错误', 2000)}
+          >
+            带图标按钮(弹出Toast)
+          </Button>
+        </p>
+        <p>
+          <Button
+            type="primary"
+            loading
+            onClick={() => Toast.offline('网络错误', 2000)}
+          >
+            加载中的按钮
+          </Button>
+        </p>
+        <p>
+          <Button type="warn" disabled iconType="fail">
+            被禁止的按钮
+          </Button>
+        </p>
+        <Modal title="提示" visible={modalVisible} onClose={this.closeModal} />
       </div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '250px'
-        }}
-      >
-        Content of second tab
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '350px'
-        }}
-      >
-        Content of third tab
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '350px'
-        }}
-      >
-        Content of forth tab
-      </div>
-    </Tabs>
-    <p>
-      <Button loading>普通按钮</Button>
-    </p>
-    <p>
-      <Button
-        type="primary"
-        iconType="offline"
-        onClick={() => Toast.info('网络错误', 2000)}
-      >
-        11
-      </Button>
-    </p>
-    <p>
-      <Button
-        type="primary"
-        loading
-        onClick={() => Toast.offline('网络错误', 2000)}
-      >
-        加载动画
-      </Button>
-    </p>
-    <p>
-      <Button type="warn" disabled iconType="fail">
-        11
-      </Button>
-    </p>
-  </div>
-);
+    );
+  }
+}
 
 export default App;

@@ -11,7 +11,6 @@ let messageInstance;
  * @param {string} type
  * @param {number} duration
  * @param {Function} onClose
- * @param {boolean} mask
  */
 function notice(content, type, duration = 2000, onClose) {
   const iconTypes = {

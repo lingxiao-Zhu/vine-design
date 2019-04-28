@@ -1,3 +1,5 @@
+$anmation-time: 0.3s;
+
 @keyframes rotate {
   100% {
     transform: rotate(360deg);
@@ -14,4 +16,42 @@
   100% {
     opacity: 0;
   }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translate3d(0, 15px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 15px, 0);
+    opacity: 0;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn $anmation-time linear forwards;
+}
+
+.fadeOut {
+  animation: fadeOut $anmation-time linear forwards;
+}
+
+.slide-up {
+  animation: slideUp $anmation-time linear forwards;
+}
+
+.slide-down {
+  animation: slideDown $anmation-time linear forwards;
 }

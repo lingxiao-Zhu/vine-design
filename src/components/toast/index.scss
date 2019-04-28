@@ -1,11 +1,11 @@
 @import "../style/index.scss";
 
-.#{$prefix}-toast-mask {
+.#{$prefix}-toast-wrap {
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   position: fixed;
-  height: 100%;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,6 @@
     color: #f2f2f2;
     font-size: 14px;
     opacity: 0;
-    animation: fadeIn 0.3s linear forwards;
 
     &-content {
       display: flex;

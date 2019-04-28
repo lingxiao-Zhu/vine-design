@@ -1,0 +1,26 @@
+@import "../style/index.scss";
+
+.#{$prefix}-modal-wrap {
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-box {
+    padding: 12px 20px;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+
+    .title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+}
