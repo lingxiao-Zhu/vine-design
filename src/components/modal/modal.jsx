@@ -1,3 +1,7 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
@@ -12,52 +16,57 @@ export default class Modal extends React.Component {
 
   static defaultProps = {
     visible: true,
-    okText: '确认',
-    cancelText: '取消'
+    footer: []
   };
+
+  componentDidMount() {
+    const { visible } = this.props;
+    if (visible) {
+      this.handleToggle(true);
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     const { visible } = this.state;
     if (nextProps.visible !== visible) {
-      this.handleOpen(nextProps.visible);
+      this.handleToggle(nextProps.visible);
     }
   }
 
-  handleOpen = (visible) => {
+  handleToggle = (visible) => {
     this.setState({ visible }, () => {
       if (visible) {
-        Mask.show();
-        // 禁止页面滚动
-        forbidScroll('vined-modal-wrap', true);
+        this._show();
+      } else {
+        this._close();
       }
     });
   };
 
-  handleCancel = () => {
+  _show = () => {
+    Mask.show();
+    forbidScroll('vined-modal-wrap', true);
+  };
+
+  // 添加退场动画，然后销毁dom，最后执行按钮对应操作
+  _close = (cb = () => {}) => {
     const { onClose } = this.props;
 
-    if (onClose && typeof onClose === 'function') {
-      forbidScroll('vined-modal-wrap', false);
-
-      this.setState({
-        className: 'slide-down'
+    forbidScroll('vined-modal-wrap', false);
+    this.setState({
+      className: 'slide-down'
+    });
+    Mask.destory();
+    setTimeout(() => {
+      this.setState({ className: 'slide-up' }, () => {
+        onClose();
+        typeof cb === 'function' && cb();
       });
-      Mask.destory();
-      setTimeout(() => {
-        this.setState(
-          {
-            className: 'slide-up'
-          },
-          () => {
-            onClose();
-          }
-        );
-      }, 300);
-    }
+    }, 300);
   };
 
   render() {
-    const { cancelText, title } = this.props;
+    const { title, children, footer } = this.props;
     const { className, visible } = this.state;
 
     const cns = ClassNames('modal-box', {
@@ -68,10 +77,22 @@ export default class Modal extends React.Component {
       visible && (
         <div className="vined-modal-wrap">
           <div className={cns}>
-            <div className="title">{title}</div>
-            <button type="button" onClick={this.handleCancel}>
-              {cancelText}
-            </button>
+            <div className="content">
+              <div className="title">{title}</div>
+              <div className="children-wrap">{children}</div>
+            </div>
+            <div className="footer">
+              {footer.map((item, index) => (
+                <button
+                  key={index}
+                  className="modal-button"
+                  type="button"
+                  onClick={() => this._close(item.onPress)}
+                >
+                  {item.title}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )
@@ -80,10 +101,9 @@ export default class Modal extends React.Component {
 }
 
 Modal.propTypes = {
-  visible: PropTypes.bool,
+  children: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
-  onOk: PropTypes.func,
-  okText: PropTypes.string,
-  cancelText: PropTypes.string
+  visible: PropTypes.bool,
+  footer: PropTypes.array
 };

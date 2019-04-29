@@ -100,13 +100,15 @@ class App extends React.PureComponent {
           <Button onClick={this.openModal}>普通按钮(弹出modal)</Button>
         </p>
         <p>
-          <Button onClick={() => Modal.confirm()}>普通按钮(confirm)</Button>
+          <Button onClick={() => Modal.confirm('111', 'xxxx')}>
+            普通按钮(confirm)
+          </Button>
         </p>
         <p>
           <Button
             type="primary"
             iconType="offline"
-            onClick={() => Toast.info('网络错误', 2000)}
+            onClick={() => Toast.offline('网络错误', 2000)}
           >
             带图标按钮(弹出Toast)
           </Button>
@@ -125,7 +127,9 @@ class App extends React.PureComponent {
             被禁止的按钮
           </Button>
         </p>
-        <Modal title="提示" visible={modalVisible} onClose={this.closeModal} />
+        <Modal title="提示" visible={modalVisible} onClose={this.closeModal}>
+          1111
+        </Modal>
       </div>
     );
   }

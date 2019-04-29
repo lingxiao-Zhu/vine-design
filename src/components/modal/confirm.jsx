@@ -1,27 +1,50 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable-next-line no-return-assign */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from './modal';
 
-function confirm(title, content, onOk, onClose = () => {}) {
+function confirm(title, content = '', onOk = () => {}, onClose = () => {}) {
   const div = document.createElement('div');
   document.body.appendChild(div);
 
   // 销毁实例
-  function _close() {
+  function destory() {
     ReactDOM.unmountComponentAtNode(div);
     if (div && div.parentNode) {
-      onClose();
       div.parentNode.removeChild(div);
     }
   }
 
+  const footer = [
+    {
+      title: '确认',
+      onPress: onOk
+    },
+    {
+      title: '取消',
+      onPress: onClose
+    },
+    {
+      title: '取消',
+      onPress: onClose
+    }
+  ];
+
   ReactDOM.render(
-    // eslint-disable-next-line no-return-assign
-    <Modal title="1" ref={v => (this.modalRef = v)} onClose={_close} />,
+    <Modal
+      title={title}
+      ref={v => (this.modalRef = v)}
+      footer={footer}
+      onClose={destory}
+    >
+      {content}
+    </Modal>,
     div
   );
-  this.modalRef.handleOpen(true);
 }
 
 export default confirm;
