@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import raf from 'raf';
 import { forbidScroll } from '../_utils/index.jsx';
 
 const AnimationTime = 300;
@@ -26,6 +27,7 @@ Notification.newInstance = function newNotificationInstance(content, callback) {
   const ToastBox = document.getElementsByClassName('toast-box')[0];
 
   // 添加入场动画
+
   ToastBox.classList.add('fadeIn');
   setTimeout(() => {
     ToastBox.style.opacity = 1;
@@ -38,15 +40,22 @@ Notification.newInstance = function newNotificationInstance(content, callback) {
   callback({
     // 删除toast实例
     destroy() {
-      ToastBox.classList.add('fadeOut');
+      let opacity = 1;
 
-      setTimeout(() => {
-        forbidScroll(div, false);
-        ReactDOM.unmountComponentAtNode(div);
-        if (div && div.parentNode) {
-          div.parentNode.removeChild(div);
+      raf(function tick() {
+        opacity -= 0.1;
+        ToastBox.style.opacity = opacity;
+        if (opacity > 0) {
+          raf(tick);
+        } else {
+          opacity = null;
+          forbidScroll(div, false);
+          ReactDOM.unmountComponentAtNode(div);
+          if (div && div.parentNode) {
+            div.parentNode.removeChild(div);
+          }
         }
-      }, AnimationTime);
+      });
     }
   });
 };
