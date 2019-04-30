@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
+import ClassNames from 'classnames';
 import Notification from './notification.jsx';
 import Icon from '../icon/index.jsx';
 import './index.scss';
@@ -34,7 +35,14 @@ function notice(content, type, duration = 2000, onClose) {
   const contentDom = (
     <div className="toast-box-content">
       {iconType && iconType !== 'info' && (
-        <Icon className="toast-icon" type={iconType} width={40} height={40} />
+        <Icon
+          className={ClassNames('toast-icon', {
+            rotate: iconType === 'loading'
+          })}
+          type={iconType}
+          width={40}
+          height={40}
+        />
       )}
       <div className="toast-text">{content}</div>
     </div>
@@ -73,8 +81,8 @@ export default {
   offline(content, duration, onClose) {
     return notice(content, 'offline', duration, onClose);
   },
-  loading(content, duration, onClose) {
-    return notice(content, 'loading', duration, onClose);
+  loading(content) {
+    return notice(content, 'loading');
   },
   hide() {
     if (messageInstance) {

@@ -27,10 +27,6 @@ function confirm(title, content = '', onOk = () => {}, onClose = () => {}) {
     {
       title: '取消',
       onPress: onClose
-    },
-    {
-      title: '取消',
-      onPress: onClose
     }
   ];
 

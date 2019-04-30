@@ -31,6 +31,21 @@ const tabs = [
   { title: 'Fourth Tab' }
 ];
 
+const footer = [
+  {
+    title: '确认',
+    onPress: () => {}
+  },
+  {
+    title: '取消',
+    onPress: () => {}
+  },
+  {
+    title: '禁止',
+    onPress: () => {}
+  }
+];
+
 class App extends React.PureComponent {
   state = {
     modalVisible: false
@@ -116,6 +131,15 @@ class App extends React.PureComponent {
         <p>
           <Button
             type="primary"
+            iconType="success"
+            onClick={() => Toast.loading('加载中')}
+          >
+            带图标按钮(弹出Loading)
+          </Button>
+        </p>
+        <p>
+          <Button
+            type="primary"
             loading
             onClick={() => Toast.offline('网络错误', 2000)}
           >
@@ -127,7 +151,12 @@ class App extends React.PureComponent {
             被禁止的按钮
           </Button>
         </p>
-        <Modal title="提示" visible={modalVisible} onClose={this.closeModal}>
+        <Modal
+          title="提示"
+          visible={modalVisible}
+          onClose={this.closeModal}
+          footer={footer}
+        >
           1111
         </Modal>
       </div>

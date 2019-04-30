@@ -35,9 +35,16 @@
 
     .footer {
       display: flex;
-      flex-direction: row;
-      align-content: center;
       border-top: 1px solid #ddd;
+      flex-direction: row;
+
+      &.flexHorizontal {
+        flex-direction: column;
+        .modal-button {
+          border-top: 1px solid #ddd;
+          border-left: none;
+        }
+      }
 
       .modal-button {
         display: block;
@@ -53,6 +60,7 @@
 
         &:first-child {
           border-left: none;
+          border-top: none;
           color: $theme-color;
         }
       }

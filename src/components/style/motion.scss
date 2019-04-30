@@ -40,6 +40,10 @@ $anmation-time: 0.3s;
   }
 }
 
+.rotate {
+  animation: rotate 1s infinite linear;
+}
+
 .fadeIn {
   animation: fadeIn $anmation-time linear forwards;
 }

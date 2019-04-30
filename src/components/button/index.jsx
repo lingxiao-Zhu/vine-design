@@ -38,11 +38,7 @@ export default class Button extends React.PureComponent {
         className={classNames}
       >
         {loading && (
-          <Icon
-            style={{ marginRight: 10 }}
-            type="loading"
-            className="button-loading-icon"
-          />
+          <Icon style={{ marginRight: 10 }} type="loading" className="rotate" />
         )}
         {!loading && iconType && (
           <Icon style={{ marginRight: 10 }} type={iconType} />

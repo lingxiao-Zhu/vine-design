@@ -39,6 +39,7 @@ Notification.newInstance = function newNotificationInstance(content, callback) {
     // 删除toast实例
     destroy() {
       ToastBox.classList.add('fadeOut');
+
       setTimeout(() => {
         forbidScroll(div, false);
         ReactDOM.unmountComponentAtNode(div);
