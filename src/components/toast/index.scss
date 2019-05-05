@@ -1,0 +1,32 @@
+@import "../style/index.scss";
+
+.#{$prefix}-toast-wrap {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(1px);
+
+  .toast-box {
+    padding: 12px 20px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #f2f2f2;
+    font-size: 14px;
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .toast-icon {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

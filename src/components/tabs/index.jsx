@@ -2,12 +2,12 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tabbar from './tabbar';
+import Tabbar from './tabbar.jsx';
 import './index.scss';
 
 const tabBarHeight = 45;
 
-// 计算tabbar和underline的宽度，最小为33.33
+// 计算tabbar和underline的宽度，最小为33.33%
 function calcWitdh(length) {
   if (length > 3) {
     return 33.33;

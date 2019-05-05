@@ -18,3 +18,7 @@ if (
 /* eslint-disable import/extensions */
 export { default as Carousel } from './components/carousel/index.jsx';
 export { default as Tabs } from './components/tabs/index.jsx';
+export { default as Toast } from './components/toast/index.jsx';
+export { default as Button } from './components/button/index.jsx';
+export { default as Icon } from './components/icon/index.jsx';
+export { default as Modal } from './components/modal/index.jsx';

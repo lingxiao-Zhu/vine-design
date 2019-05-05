@@ -1,0 +1,11 @@
+$anmation-time: 0.3s;
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation: rotate 1s infinite linear;
+}

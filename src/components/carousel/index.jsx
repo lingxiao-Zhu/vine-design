@@ -2,7 +2,6 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-trailing-spaces */
-/* eslint-disable indent */
 import React from 'react';
 import PropTypes from 'prop-types';
 import SingleSlider from './slider.jsx';
@@ -27,6 +26,7 @@ export default class Carousel extends React.PureComponent {
 
   constructor(props) {
     super(props);
+    this.slideListDom = null;
     this.state = {
       fakeOpts: [...props.opts],
       startX: '', // touchstart的 x
@@ -54,10 +54,19 @@ export default class Carousel extends React.PureComponent {
   }
 
   componentDidMount() {
+    // 通过原生js绑定touchmove，才能传递passive属性
+    document
+      .getElementsByClassName('slider-list')[0]
+      .addEventListener('touchmove', this.touchMove, {
+        passive: false
+      });
     this.autoSlideFun();
   }
 
   componentWillUnmount() {
+    document
+      .getElementsByClassName('slider-list')[0]
+      .removeEventListener('touchmove', this.touchMove);
     this.stopSlideFun();
   }
 
@@ -166,6 +175,9 @@ export default class Carousel extends React.PureComponent {
     }
   };
 
+  /**
+   * 启动自动轮播，设置interval
+   */
   autoSlideFun = () => {
     const { autoSlide, slideSpeed } = this.props;
 
@@ -186,8 +198,12 @@ export default class Carousel extends React.PureComponent {
     const { opts, continuous, dotPosition } = this.props;
 
     const {
- distance, time, index, fakeOpts 
-} = this.state;
+      distance,
+      time,
+      index,
+      fakeOpts
+      // eslint-disable-next-line indent
+    } = this.state;
 
     const slideListStyle = {
       width: `${ScreenWidth * (fakeOpts.length + 2)}px`,
@@ -212,7 +228,6 @@ export default class Carousel extends React.PureComponent {
           className="slider-list"
           style={slideListStyle}
           onTouchStart={this.touchStart}
-          onTouchMove={this.touchMove}
           onTouchEnd={this.touchEnd}
         >
           {sliders}

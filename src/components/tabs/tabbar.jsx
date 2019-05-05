@@ -16,21 +16,22 @@ export default class Tabbar extends React.PureComponent {
    */
   createFlexBoxStyle = () => {
     const { tabs, state } = this.props;
-
     const { page, width } = state;
-
     if (tabs.length < 4) {
       return {};
     }
-
     return page > 1 ? this.createTranslate(-width * (page - 1)) : {};
   };
 
   render() {
     const { state, changeTab, tabs } = this.props;
     const {
- width, fixed, top, page 
-} = state;
+      width,
+      fixed,
+      top,
+      page
+      // eslint-disable-next-line no-trailing-spaces
+    } = state;
 
     const widthWithUnit = `${width}%`;
     return (
@@ -56,7 +57,10 @@ export default class Tabbar extends React.PureComponent {
             </button>
           ))}
           <div
-            style={{ width: widthWithUnit, left: `${width * page}%` }}
+            style={{
+              left: `${width * page}%`,
+              marginLeft: `${tabs.length >= 3 ? 12.5 : 21}vw`
+            }}
             className="underline"
           />
         </div>

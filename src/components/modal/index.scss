@@ -1,0 +1,69 @@
+@import "../style/index.scss";
+
+.#{$prefix}-modal-wrap {
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-box {
+    border-radius: 3px;
+    width: 270px;
+    background-color: #fff;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+
+    .content {
+      padding-top: 15px;
+
+      .title {
+        text-align: center;
+        font-size: 18px;
+      }
+
+      .children-wrap {
+        margin: 20px 0;
+        text-align: center;
+        color: #999;
+      }
+    }
+
+    .footer {
+      display: flex;
+      border-top: 1px solid #ddd;
+      flex-direction: row;
+
+      &.flexHorizontal {
+        flex-direction: column;
+        .modal-button {
+          border-top: 1px solid #ddd;
+          border-left: none;
+        }
+      }
+
+      .modal-button {
+        display: block;
+        flex: 1;
+        height: 50px;
+        text-align: center;
+        font-size: 18px;
+        border-left: 1px solid #ddd;
+
+        &:active {
+          background-color: #ddd;
+        }
+
+        &:first-child {
+          border-left: none;
+          border-top: none;
+          color: $theme-color;
+        }
+      }
+    }
+  }
+}
