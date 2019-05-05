@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-underscore-dangle */
@@ -7,7 +8,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
-import { Mask, forbidScroll } from '../_utils';
+import { Mask, Animation } from '../_utils';
 import './index.scss';
 
 export default class Modal extends React.Component {
@@ -18,8 +19,7 @@ export default class Modal extends React.Component {
   };
 
   state = {
-    visible: false,
-    className: 'slide-up'
+    visible: false
   };
 
   componentDidMount() {
@@ -37,33 +37,38 @@ export default class Modal extends React.Component {
   }
 
   toggle = (visible) => {
-    this.setState({ visible }, () => {
-      if (visible) {
-        Mask.show();
-        forbidScroll('vined-modal-wrap', true);
-      } else {
-        this.setState({
-          visible: false
+    if (visible) {
+      this.setState({ visible: true }, () => {
+        Animation({
+          type: 'slideUp',
+          instance: this.mainRef,
+          forbidDOM: this.mainRef.parentElement,
+          before() {
+            Mask.show();
+          }
         });
-      }
-    });
+      });
+    } else {
+      this.setState({
+        visible: false
+      });
+    }
   };
 
   // 添加退场动 =》然后销毁dom =》最后执行按钮对应操作
-  _out = (cb = () => {}) => {
+  _out = (clickEvent = () => {}) => {
     const { onClose } = this.props;
 
-    forbidScroll('vined-modal-wrap', false);
-    this.setState({
-      className: 'slide-down'
-    });
-    Mask.destory();
-    setTimeout(() => {
-      this.setState({ className: 'slide-up' }, () => {
+    Animation({
+      type: 'slideDown',
+      instance: this.mainRef,
+      releaseDOM: this.mainRef.parentElement,
+      after() {
+        Mask.destory(); // 隐藏遮罩层
         onClose(); // 父组件销毁dom事件
-        typeof cb === 'function' && cb(); // 按钮点击事件
-      });
-    }, 300);
+        typeof clickEvent === 'function' && clickEvent(); // 按钮点击事件
+      }
+    });
   };
 
   // 遮罩层点击事件
@@ -72,17 +77,9 @@ export default class Modal extends React.Component {
     maskClosable && this._out();
   };
 
-  _sp = (e) => {
-    e.stopPropagation();
-  };
-
   render() {
     const { title, children, footer } = this.props;
-    const { className, visible } = this.state;
-
-    const BoxClass = ClassNames('modal-box', {
-      [className]: true
-    });
+    const { visible } = this.state;
 
     const FooterClass = ClassNames('footer', {
       flexHorizontal: footer.length > 2
@@ -95,7 +92,14 @@ export default class Modal extends React.Component {
           onClick={this._maskEvent}
           role="button"
         >
-          <div className={BoxClass} onClick={this._sp} role="button">
+          <div
+            className="modal-box"
+            ref={v => (this.mainRef = v)}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            role="button"
+          >
             <div className="content">
               <div className="title">{title}</div>
               <div className="children-wrap">{children}</div>

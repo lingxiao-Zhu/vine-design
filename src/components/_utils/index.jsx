@@ -1,20 +1,29 @@
-export const Mask = {
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-param-reassign */
+import Animation from './animation';
+
+const Mask = {
   instance: null,
   show() {
     const dom = document.createElement('div');
+    dom.classList.add('vined-mask');
     this.instance = dom;
-    dom.classList.add('vined-mask', 'fadeIn');
     document.body.appendChild(dom);
-    setTimeout(() => {
-      dom.style.opacity = 1;
-      dom.classList.remove('fadeIn');
-    }, 300);
+    Animation({
+      type: 'fadeIn',
+      instance: dom
+    });
   },
   destory() {
-    this.instance.classList.add('fadeOut');
-    setTimeout(() => {
-      document.body.removeChild(this.instance);
-    }, 300);
+    Animation({
+      type: 'fadeOut',
+      instance: Mask.instance,
+      after() {
+        document.body.removeChild(Mask.instance);
+      }
+    });
   }
 };
 
@@ -22,10 +31,7 @@ function forbidScrollEvent(e) {
   e.preventDefault();
 }
 
-export function forbidScroll(t, isAdd) {
-  // eslint-disable-next-line no-multi-spaces
-  const target =    typeof t === 'string' ? document.getElementsByClassName(t)[0] : t;
-
+function forbidScroll(target, isAdd) {
   if (isAdd) {
     target.addEventListener('touchmove', forbidScrollEvent, {
       passive: false
@@ -34,3 +40,5 @@ export function forbidScroll(t, isAdd) {
     target.removeEventListener('touchmove', forbidScrollEvent);
   }
 }
+
+export { Mask, forbidScroll, Animation };

@@ -2,10 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import raf from 'raf';
-import { forbidScroll } from '../_utils/index.jsx';
-
-const AnimationTime = 300;
+import { Animation } from '../_utils/index.jsx';
 
 class Notification extends React.Component {
   render() {
@@ -27,29 +24,20 @@ Notification.newInstance = function newNotificationInstance(content, callback) {
   const ToastBox = document.getElementsByClassName('toast-box')[0];
 
   // 添加入场动画
-
-  ToastBox.classList.add('fadeIn');
-  setTimeout(() => {
-    ToastBox.style.opacity = 1;
-    ToastBox.classList.remove('fadeIn');
-  }, AnimationTime);
-
-  // 禁止页面滚动
-  forbidScroll(div, true);
+  Animation({
+    type: 'fadeIn',
+    instance: ToastBox,
+    forbidDOM: div
+  });
 
   callback({
     // 删除toast实例
     destroy() {
-      let opacity = 1;
-
-      raf(function tick() {
-        opacity -= 0.1;
-        ToastBox.style.opacity = opacity;
-        if (opacity > 0) {
-          raf(tick);
-        } else {
-          opacity = null;
-          forbidScroll(div, false);
+      Animation({
+        type: 'fadeOut',
+        instance: ToastBox,
+        releaseDOM: div,
+        after() {
           ReactDOM.unmountComponentAtNode(div);
           if (div && div.parentNode) {
             div.parentNode.removeChild(div);
@@ -61,7 +49,6 @@ Notification.newInstance = function newNotificationInstance(content, callback) {
 };
 
 Notification.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   content: PropTypes.object.isRequired
 };
 
