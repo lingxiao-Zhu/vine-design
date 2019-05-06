@@ -8,7 +8,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
-import { Mask, Animation } from '../_utils';
+import { Mask, Animation } from '../_utils/index.jsx';
 import './index.scss';
 
 export default class Modal extends React.Component {

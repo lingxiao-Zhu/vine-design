@@ -1,5 +1,5 @@
-import Modal from './modal';
-import confirm from './confirm';
+import Modal from './modal.jsx';
+import confirm from './confirm.jsx';
 
 Modal.confirm = confirm;
 

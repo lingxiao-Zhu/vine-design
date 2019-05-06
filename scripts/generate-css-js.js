@@ -8,6 +8,8 @@ moduleNames.forEach((moduleName) => {
   // 找到每个组件下的style文件夹
   const styleDirPath = path.resolve(componentDir, moduleName, 'style');
 
+  if (!fs.existsSync(styleDirPath)) return;
+
   // 找到style文件夹下的所有文件
   const files = fs.readdirSync(styleDirPath);
 

@@ -5,7 +5,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Modal from './modal';
+import Modal from './modal.jsx';
 
 function confirm(title, content = '', onOk = () => {}, onClose = () => {}) {
   const div = document.createElement('div');
