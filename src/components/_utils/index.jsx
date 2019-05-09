@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 import Animation from './animation';
+import forbidScroll from './forbidScroll';
 
 const Mask = {
   instance: null,
@@ -26,19 +27,5 @@ const Mask = {
     });
   }
 };
-
-function forbidScrollEvent(e) {
-  e.preventDefault();
-}
-
-function forbidScroll(target, isAdd) {
-  if (isAdd) {
-    target.addEventListener('touchmove', forbidScrollEvent, {
-      passive: false
-    });
-  } else {
-    target.removeEventListener('touchmove', forbidScrollEvent);
-  }
-}
 
 export { Mask, forbidScroll, Animation };

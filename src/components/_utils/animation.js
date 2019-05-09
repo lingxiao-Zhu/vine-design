@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-return-assign */
 import raf from 'raf';
-import { forbidScroll as FS } from './index.jsx';
+import FS from './forbidScroll';
 
 /**
  * 进出场动画
