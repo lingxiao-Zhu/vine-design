@@ -47,8 +47,22 @@ const createModuleConfig = (prefix, moduleName, modulePath) => ({
       include: 'node_modules/**' // Default: undefined
     }),
     babel({
-      plugins: ['external-helpers'],
-      exclude: ['node_modules/**', 'src/**/*.css', 'src/**/*.scss'] // 只编译我们的源代码
+      babelrc: false,
+      exclude: ['node_modules/**', 'src/**/*.css', 'src/**/*.scss'],
+      presets: [
+        [
+          'env',
+          {
+            modules: false,
+            targets: {
+              browsers: ['last 2 versions', 'safari >= 7']
+            }
+          }
+        ],
+        'stage-2',
+        'react'
+      ],
+      plugins: ['external-helpers']
     }),
     postcss({
       sourceMap: false, // true, "inline" or false,
